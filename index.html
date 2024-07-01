@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          
+        }
+        body{
+            background-color: #000;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container{
+            background-color: white;
+            max-width: 60vw;
+            width: 500px;
+           margin-top: 20vh;
+            box-shadow: 0 0 15px gray;
+            border: 2px solid green;
+        }
+        .bmi-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 16px;
+            padding: 20px;
+        }
+        h3{
+            text-align: center;
+            background-color: green;
+            color: white;
+            margin: auto;
+            width: 200px;
+            padding: 10px;
+        }
+        label{
+            margin-right: 10px;
+        }
+        input{
+            border: none;
+            outline: none;
+            border-bottom: 2px solid green;
+            
+        }
+        button{
+            width: 200px;
+            padding: 8px;
+            margin: auto;
+            background-color: green;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="" class="bmi-container">
+            <h3>BMI Claculator</h3>
+            <div class="heightcontainer">
+                <label for="height">
+                    Height (m):
+                </label>
+                <input type="text" placeholder="1.7" id="height">
+            </div>
+            <div class="weightcontainer">
+                <label for="weight">
+                    weight (kg):
+                </label>
+                <input type="text" placeholder="72" id="weight">
+            </div>
+            <button onclick="bmi(event)">Check BMI</button>
+            <div class="result"></div>
+            <div class="body"></div>
+        </form>
+    </div>
+
+
+<script>
+        function bmi(event){
+            event.preventDefault();
+            let height = document.querySelector("#height").value;
+            height = Number(height);
+            
+            let weight = document.querySelector("#weight").value;
+            weight = Number(weight);
+            if(!height && !weight) return;
+          //calculation
+          let result = weight/height**2;
+          document.querySelector(".result").innerHTML = "Your BMI is:" + " " + result;
+          document.querySelector(".result").style.color = "white";
+          document.querySelector(".result").style.backgroundColor = "green";
+          document.querySelector(".result").style.borderRadius = '10px';
+          document.querySelector(".result").style.padding = "10px";
+
+          if(result < 18.5){
+            document.querySelector(".body").innerHTML = "You are underweight";
+            document.querySelector(".body").style.color="blue"
+          }else if (result >= 18.5 && result <= 24.999999){
+            document.querySelector(".body").innerHTML = "Congratulations!! your weight is normal";
+            document.querySelector(".body").style.color="green"
+          }else if(result >=25 && result < 29.9){
+            document.querySelector(".body").innerHTML = "Watch your weight!! you are overweight";
+            document.querySelector(".body").style.color="yellow"
+
+          }else{
+            document.querySelector(".body").innerHTML = "You are Obesse";
+            document.querySelector(".body").style.color="red"
+          }
+
+          
+        }
+
+        let currentdate= new Date();
+        currentyear = currentdate.getFullYear();
+        console.log(currentyear)
+    </script>
+</body>
+</html>
